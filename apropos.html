@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos | SOCIAL SUCCÈS GROUP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #F8FAF7;
+            --surface: #FFFFFF;
+            --surface-alt: #EDF4EE;
+            --text: #1C2720;
+            --text-secondary: #4F6156;
+            --text-muted: #7B9485;
+            --border: #DCE8DF;
+            --green: #0D9E4A;
+            --green-dark: #087A38;
+            --green-bg: #E8F8EF;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
+            --shadow-green: 0 8px 32px rgba(13, 158, 74, 0.12);
+            --radius: 16px;
+            --radius-lg: 24px;
+            --transition: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-spring: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --nav-height: 76px;
+        }
+        .dark-mode {
+            --bg: #0A0F0C;
+            --surface: #111915;
+            --surface-alt: #182018;
+            --text: #F0F4F1;
+            --text-secondary: #B0C4B8;
+            --text-muted: #7A9484;
+            --border: #233026;
+            --green-bg: #0D2418;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.35);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.45);
+            --shadow-green: 0 8px 32px rgba(13, 158, 74, 0.18);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            transition: background 0.4s, color 0.4s;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1100px; margin:0 auto; padding:0 24px; }
+        .navbar {
+            position: fixed; top:0; left:0; width:100%; z-index:1000;
+            background: var(--surface); border-bottom:1px solid var(--border);
+            backdrop-filter: blur(18px); height:var(--nav-height);
+            box-shadow: var(--shadow-sm); transition: background 0.4s, border 0.4s;
+        }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; height:100%; }
+        .logo-link {
+            display:flex; align-items:center; gap:10px; text-decoration:none;
+            color:var(--text); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.25rem;
+        }
+        .logo-img { width:44px; height:44px; border-radius:12px; object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+        .nav-links { display:flex; list-style:none; gap:28px; align-items:center; }
+        .nav-links a {
+            text-decoration:none; color:var(--text-secondary); font-weight:500; font-size:0.95rem;
+            transition:color 0.3s; padding:8px 0;
+        }
+        .nav-links a:hover, .nav-links a.active { color:var(--green); }
+        .btn-nav {
+            background:var(--green); color:#fff !important; padding:10px 22px; border-radius:50px;
+            font-weight:600; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important;
+            box-shadow:0 4px 16px rgba(13,158,74,0.3); font-size:0.9rem;
+        }
+        .btn-nav:hover { background:var(--green-dark) !important; transform:translateY(-3px); }
+        .theme-toggle {
+            background:none; border:2px solid var(--border); border-radius:50px; width:42px; height:42px;
+            display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.2rem;
+            color:var(--text-secondary); transition:all 0.3s; margin-left:6px;
+        }
+        .dark-mode .theme-toggle .fa-moon { display:none; }
+        .dark-mode .theme-toggle .fa-sun { display:inline-block; }
+        .theme-toggle .fa-sun { display:none; }
+        .theme-toggle .fa-moon { display:inline-block; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+        .hamburger span { width:26px; height:2.5px; background:var(--text); border-radius:4px; transition:0.3s; }
+        .mobile-menu {
+            position:fixed; top:0; left:0; width:100%; height:100vh; background:var(--surface);
+            z-index:999; display:flex; flex-direction:column; align-items:center; justify-content:center;
+            gap:28px; opacity:0; pointer-events:none; transition:opacity 0.35s;
+        }
+        .mobile-menu.active { opacity:1; pointer-events:all; }
+        .mobile-menu a { font-size:1.4rem; color:var(--text); text-decoration:none; font-weight:600; }
+
+        .page-content { padding: calc(var(--nav-height) + 50px) 0 60px; }
+        .page-title {
+            font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:800;
+            text-align:center; margin-bottom:12px;
+        }
+        .page-subtitle { text-align:center; color:var(--text-secondary); margin-bottom:40px; font-size:1.1rem; }
+        .content-card {
+            background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);
+            padding:36px; box-shadow:var(--shadow-sm); margin-bottom:28px; transition:all var(--transition);
+        }
+        .content-card:hover { box-shadow:var(--shadow-md); }
+        .content-card h2 { font-family:'Space Grotesk',sans-serif; font-size:1.5rem; margin-bottom:14px; color:var(--green); }
+        .content-card p { margin-bottom:12px; color:var(--text-secondary); }
+        .content-card ul { list-style:none; padding-left:0; }
+        .content-card ul li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+        .content-card ul li i { color:var(--green); }
+        .btn { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; text-decoration:none; transition:all var(--transition-spring); }
+        .btn-primary { background:var(--green); color:#fff; box-shadow:0 8px 32px rgba(13,158,74,0.15); }
+        .btn-primary:hover { background:var(--green-dark); transform:translateY(-4px); }
+        .footer { padding:30px 0; border-top:1px solid var(--border); text-align:center; color:var(--text-muted); font-size:0.85rem; }
+        .footer a { color:var(--green); text-decoration:none; font-weight:500; }
+
+        @media (max-width: 768px) {
+            .nav-links { display:none; }
+            .hamburger { display:flex; }
+            .page-title { font-size:1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="https://raw.githubusercontent.com/exaucenapopolo/SOCIAL-SUCC-S-GROUP-/refs/heads/main/Tof/1776970914770.png" alt="Logo" class="logo-img">
+                SOCIAL SUCCÈS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="apropos.html" class="active">À propos</a></li>
+                <li><a href="index.html#projet">Projets</a></li>
+                <li><a href="index.html#partenaires">Partenaires</a></li>
+                <li><a href="contact.html" class="btn-nav">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre/clair">
+                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Accueil</a>
+        <a href="apropos.html">À propos</a>
+        <a href="index.html#projet">Projets</a>
+        <a href="index.html#partenaires">Partenaires</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <main class="page-content">
+        <div class="container">
+            <h1 class="page-title">À propos de SOCIAL SUCCÈS GROUP</h1>
+            <p class="page-subtitle">Un groupe digital innovant au service de la réussite africaine et internationale.</p>
+
+            <div class="content-card">
+                <h2>Notre Mission</h2>
+                <p>SOCIAL SUCCÈS GROUP est un groupe digital innovant spécialisé dans la création, le développement et la gestion de projets numériques à fort impact. Notre mission est de créer des opportunités concrètes pour les jeunes, les entrepreneurs et toutes les personnes souhaitant exploiter le potentiel du digital pour améliorer leurs revenus et leur visibilité.</p>
+            </div>
+
+            <div class="content-card">
+                <h2>Notre Vision</h2>
+                <p>Notre vision est de devenir un acteur majeur du digital en Afrique et à l'international, en développant des plateformes accessibles, utiles et rentables, capables de transformer un simple smartphone en véritable outil de réussite.</p>
+            </div>
+
+            <div class="content-card">
+                <h2>Nos Piliers</h2>
+                <ul>
+                    <li><i class="fa-solid fa-check-circle"></i> <strong>Accessibilité</strong> – Des solutions ouvertes à tous, quel que soit le niveau de départ.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> <strong>Simplicité</strong> – Des interfaces et des processus pensés pour être utilisés facilement.</li>
+                    <li><i class="fa-solid fa-check-circle"></i> <strong>Performance</strong> – Des résultats mesurables et concrets pour chaque utilisateur.</li>
+                </ul>
+            </div>
+
+            <div class="content-card">
+                <h2>Nos domaines d'action</h2>
+                <ul>
+                    <li><i class="fa-solid fa-briefcase"></i> Plateformes de missions rémunérées</li>
+                    <li><i class="fa-solid fa-bullhorn"></i> Solutions de marketing digital</li>
+                    <li><i class="fa-solid fa-hashtag"></i> Outils de croissance sur les réseaux sociaux</li>
+                    <li><i class="fa-solid fa-graduation-cap"></i> Programmes de formation digitale</li>
+                    <li><i class="fa-solid fa-coins"></i> Systèmes de monétisation en ligne</li>
+                    <li><i class="fa-solid fa-earth-africa"></i> Projets innovants adaptés au marché africain</li>
+                </ul>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Nous contacter</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 <a href="index.html">SOCIAL SUCCÈS GROUP</a> — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        document.querySelectorAll('.mobile-menu a').forEach(l => l.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }));
+        if (localStorage.getItem('theme') === 'dark') body.classList.add('dark-mode');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', body.classList.contains('dark-mode') ? 'dark' : 'light');
+        });
+    </script>
+</body>
+</html>

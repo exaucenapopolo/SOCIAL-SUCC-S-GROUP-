@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | SOCIAL SUCCÈS GROUP</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg:#F8FAF7; --surface:#FFFFFF; --surface-alt:#EDF4EE; --text:#1C2720;
+            --text-secondary:#4F6156; --text-muted:#7B9485; --border:#DCE8DF;
+            --green:#0D9E4A; --green-dark:#087A38; --green-bg:#E8F8EF;
+            --shadow-sm:0 1px 3px rgba(0,0,0,0.04); --shadow-md:0 4px 16px rgba(0,0,0,0.06);
+            --shadow-lg:0 12px 40px rgba(0,0,0,0.08); --radius:16px; --radius-lg:24px;
+            --transition:0.35s cubic-bezier(0.25,0.1,0.25,1);
+            --transition-spring:0.4s cubic-bezier(0.34,1.56,0.64,1); --nav-height:76px;
+        }
+        .dark-mode {
+            --bg:#0A0F0C; --surface:#111915; --surface-alt:#182018; --text:#F0F4F1;
+            --text-secondary:#B0C4B8; --text-muted:#7A9484; --border:#233026;
+            --green-bg:#0D2418; --shadow-sm:0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md:0 4px 16px rgba(0,0,0,0.35); --shadow-lg:0 12px 40px rgba(0,0,0,0.45);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; transition:background 0.4s,color 0.4s; -webkit-font-smoothing:antialiased; }
+        .container { max-width:900px; margin:0 auto; padding:0 24px; }
+        .navbar { position:fixed; top:0; left:0; width:100%; z-index:1000; background:var(--surface); border-bottom:1px solid var(--border); backdrop-filter:blur(18px); height:var(--nav-height); box-shadow:var(--shadow-sm); transition:background 0.4s,border 0.4s; }
+        .navbar .container { display:flex; align-items:center; justify-content:space-between; height:100%; }
+        .logo-link { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--text); font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.25rem; }
+        .logo-img { width:44px; height:44px; border-radius:12px; object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+        .nav-links { display:flex; list-style:none; gap:28px; align-items:center; }
+        .nav-links a { text-decoration:none; color:var(--text-secondary); font-weight:500; font-size:0.95rem; transition:color 0.3s; padding:8px 0; }
+        .nav-links a:hover, .nav-links a.active { color:var(--green); }
+        .btn-nav { background:var(--green); color:#fff !important; padding:10px 22px; border-radius:50px; font-weight:600; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important; box-shadow:0 4px 16px rgba(13,158,74,0.3); font-size:0.9rem; }
+        .btn-nav:hover { background:var(--green-dark) !important; transform:translateY(-3px); }
+        .theme-toggle { background:none; border:2px solid var(--border); border-radius:50px; width:42px; height:42px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.2rem; color:var(--text-secondary); transition:all 0.3s; margin-left:6px; }
+        .dark-mode .theme-toggle .fa-moon { display:none; } .dark-mode .theme-toggle .fa-sun { display:inline-block; }
+        .theme-toggle .fa-sun { display:none; } .theme-toggle .fa-moon { display:inline-block; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+        .hamburger span { width:26px; height:2.5px; background:var(--text); border-radius:4px; transition:0.3s; }
+        .mobile-menu { position:fixed; top:0; left:0; width:100%; height:100vh; background:var(--surface); z-index:999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; opacity:0; pointer-events:none; transition:opacity 0.35s; }
+        .mobile-menu.active { opacity:1; pointer-events:all; }
+        .mobile-menu a { font-size:1.4rem; color:var(--text); text-decoration:none; font-weight:600; }
+
+        .page-content { padding: calc(var(--nav-height) + 50px) 0 60px; }
+        .page-title { font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:800; text-align:center; margin-bottom:12px; }
+        .page-subtitle { text-align:center; color:var(--text-secondary); margin-bottom:40px; font-size:1.1rem; }
+        .contact-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg); padding:40px; box-shadow:var(--shadow-md); max-width:600px; margin:0 auto; }
+        .form-group { margin-bottom:20px; }
+        .form-group label { display:block; font-weight:600; margin-bottom:6px; font-size:0.9rem; }
+        .form-group input, .form-group textarea { width:100%; padding:14px 16px; border:1.5px solid var(--border); border-radius:var(--radius); font-family:inherit; font-size:0.95rem; background:var(--bg); color:var(--text); transition:border 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline:none; border-color:var(--green); box-shadow:0 0 0 4px rgba(13,158,74,0.08); }
+        .btn { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:50px; font-weight:600; font-size:0.95rem; cursor:pointer; text-decoration:none; transition:all var(--transition-spring); border:none; font-family:inherit; }
+        .btn-primary { background:var(--green); color:#fff; box-shadow:0 8px 32px rgba(13,158,74,0.15); width:100%; justify-content:center; }
+        .btn-primary:hover { background:var(--green-dark); transform:translateY(-3px); }
+        .footer { padding:30px 0; border-top:1px solid var(--border); text-align:center; color:var(--text-muted); font-size:0.85rem; }
+        .footer a { color:var(--green); text-decoration:none; font-weight:500; }
+        @media (max-width:768px) { .nav-links { display:none; } .hamburger { display:flex; } .page-title { font-size:1.8rem; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="https://raw.githubusercontent.com/exaucenapopolo/SOCIAL-SUCC-S-GROUP-/refs/heads/main/Tof/1776970914770.png" alt="Logo" class="logo-img">
+                SOCIAL SUCCÈS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="apropos.html">À propos</a></li>
+                <li><a href="index.html#projet">Projets</a></li>
+                <li><a href="index.html#partenaires">Partenaires</a></li>
+                <li><a href="contact.html" class="active btn-nav">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Mode sombre/clair">
+                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">Accueil</a>
+        <a href="apropos.html">À propos</a>
+        <a href="index.html#projet">Projets</a>
+        <a href="index.html#partenaires">Partenaires</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <main class="page-content">
+        <div class="container">
+            <h1 class="page-title">Contactez-nous</h1>
+            <p class="page-subtitle">Une question, un projet, une collaboration ? Écrivez-nous.</p>
+            <div class="contact-card">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="nom">Nom complet</label>
+                        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse e-mail</label>
+                        <input type="email" id="email" name="email" placeholder="vous@exemple.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sujet">Sujet</label>
+                        <input type="text" id="sujet" name="sujet" placeholder="Objet de votre message">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 <a href="index.html">SOCIAL SUCCÈS GROUP</a> — Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger=document.getElementById('hamburger'), mobileMenu=document.getElementById('mobileMenu'),
+              themeToggle=document.getElementById('themeToggle'), body=document.body;
+        hamburger.addEventListener('click',()=>{hamburger.classList.toggle('active');mobileMenu.classList.toggle('active');});
+        document.querySelectorAll('.mobile-menu a').forEach(l=>l.addEventListener('click',()=>{hamburger.classList.remove('active');mobileMenu.classList.remove('active');}));
+        if(localStorage.getItem('theme')==='dark') body.classList.add('dark-mode');
+        themeToggle.addEventListener('click',()=>{body.classList.toggle('dark-mode');localStorage.setItem('theme',body.classList.contains('dark-mode')?'dark':'light');});
+    </script>
+</body>
+</html>
